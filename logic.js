@@ -5,13 +5,6 @@ const intervalTime = 5000
 const auto = true
 let slideInterval
 
-const resetSliderInterval = () => {
-  if(auto) {
-    clearInterval(slideInterval)
-    slideInterval = setInterval(nextSlide, intervalTime);
-  }
-}
-
 const nextSlide = () => {
   const current = document.querySelector('.current')
   current.classList.remove('current')
@@ -21,7 +14,10 @@ const nextSlide = () => {
     slides[0].classList.add('current')
   }
   setTimeout(() => current.classList.remove('current'))
-  resetSliderInterval()
+   if(auto) {
+    clearInterval(slideInterval)
+    slideInterval = setInterval(nextSlide, intervalTime);
+  }
 }
 
 const prevSlide = () => {
@@ -33,7 +29,10 @@ const prevSlide = () => {
     slides[slides.length - 1].classList.add('current')
   }
   setTimeout(() => current.classList.remove('current'))
-  resetSliderInterval()
+   if(auto) {
+    clearInterval(slideInterval)
+    slideInterval = setInterval(nextSlide, intervalTime);
+  }
 }
 
 if(auto) {
